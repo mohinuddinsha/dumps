@@ -1,0 +1,40 @@
+// Apply the java plugin to add support for Java
+apply plugin: 'java'
+apply plugin: 'maven'
+apply plugin: 'sonar-runner'
+
+group = 'BankApp'
+version = '1.0.1'
+
+
+description = """"""
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+// In this section you declare where to find the dependencies of your project
+repositories {
+     maven { url "http://repo.maven.apache.org/maven2" }
+}
+
+// In this section you declare the dependencies for your production and test code
+dependencies {
+   testCompile 'junit:junit:4.12'
+   compile group: 'org.mockito', name: 'mockito-all', version:'1.9.5'
+    
+}
+
+
+sonarRunner {
+ sonarProperties {
+   property "sonar.projectName", "BankAppGradle"
+   property "sonar.projectKey", "org.sonarqube:java-gradle-simple"
+ }
+
+}
+
+
+
+task wrapper(type: Wrapper){
+	gradleVersion = '2.6'
+}
